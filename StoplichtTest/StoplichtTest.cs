@@ -6,6 +6,7 @@ using System.ServiceProcess;
 using StoplichtService;
 using System.Data.SqlClient;
 using System.Data.EntityClient;
+using DataAccessLayer;
 
 namespace StoplichtTest
 {
@@ -41,15 +42,9 @@ namespace StoplichtTest
             }
         }
 
-        static void LogEvent(SystemStateChange change) 
-        {
-            Console.WriteLine(change.Description);
-        }
-
         static void RunService()
         {
             SLService service = new SLService();
-            service.AddSessionChangeEventHandler(LogEvent);
 
             if (Environment.UserInteractive)
             {
@@ -68,52 +63,12 @@ namespace StoplichtTest
         {
             try
             {
-                // Specify the provider name, server and database.
-                string providerName = "System.Data.SqlClient";
-                string serverName = @"EDWIN-PC\SQLEXPRESS";
-                string databaseName = "SLService";
-
-                // Initialize the connection string builder for the
-                // underlying provider.
-                SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-
-                // Set the properties for the data source.
-                sqlBuilder.DataSource = serverName;
-                sqlBuilder.InitialCatalog = databaseName;
-                sqlBuilder.IntegratedSecurity = true;
-
-                // Build the SqlConnection connection string.
-                string providerString = sqlBuilder.ToString();
-
-                // Initialize the EntityConnectionStringBuilder.
-                EntityConnectionStringBuilder entityBuilder = new EntityConnectionStringBuilder();
-
-                //Set the provider name.
-                entityBuilder.Provider = providerName;
-
-                // Set the provider-specific connection string.
-                entityBuilder.ProviderConnectionString = providerString;
-
-                // Set the Metadata location.
-                entityBuilder.Metadata = "res://DataLayer/Model.csdl|res://DataLayer/Model.ssdl|res://DataLayer/Model.msl";
-
-                Console.WriteLine(entityBuilder.ToString());
-
-                using (EntityConnection conn =
-                new EntityConnection(entityBuilder.ToString()))
-                {
-                    conn.Open();
-                    DataLayer.EventLog log = new DataLayer.EventLog();
-                    log.Date = DateTime.Now;
-                    log.Message = "Testing connection";
-                    log.UserName = string.Join(";", StoplichtService.SystemInfo.CurrentActiveUsers());
-                    DataLayer.SLServiceEntities sl = new DataLayer.SLServiceEntities(conn);
-                    sl.AddToEventLog(log);
-                    sl.SaveChanges();
-                    conn.Close();
-
-                    Console.WriteLine("Added 'Testing connection' to EventLog table.");
-                }
+                EventLog log = new EventLog();
+                log.Date = DateTime.Now;
+                log.Message = "Testing connection";
+                log.UserName = string.Join(";", StoplichtService.SystemInfo.GetCurrentActiveUsers());
+                Helper.WriteEvent(log);
+                Console.WriteLine("Added 'Testing connection' to EventLog table.");
             }
             catch (Exception ex)
             {

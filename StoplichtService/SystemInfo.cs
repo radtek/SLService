@@ -8,23 +8,31 @@ namespace StoplichtService
 {
     public class SystemInfo
     {
-        public static string[] CurrentActiveUsers() 
+        public static string[] GetCurrentActiveUsers() 
         {
             List<string> users = new List<string>();
-            ConnectionOptions oConn = new ConnectionOptions();
-            System.Management.ManagementScope oMs = new System.Management.ManagementScope("\\\\localhost", oConn);
 
-
-            System.Management.ObjectQuery oQuery = new System.Management.ObjectQuery("select * from Win32_ComputerSystem");
-            ManagementObjectSearcher oSearcher = new ManagementObjectSearcher(oMs, oQuery);
-            ManagementObjectCollection oReturnCollection = oSearcher.Get();
-
-            foreach (ManagementObject oReturn in oReturnCollection)
+            try
             {
-                users.Add(oReturn["UserName"].ToString().ToLower());
+                ConnectionOptions oConn = new ConnectionOptions();
+                System.Management.ManagementScope oMs = new System.Management.ManagementScope("\\\\localhost", oConn);
+                System.Management.ObjectQuery oQuery = new System.Management.ObjectQuery("select * from Win32_ComputerSystem");
+                ManagementObjectSearcher oSearcher = new ManagementObjectSearcher(oMs, oQuery);
+                ManagementObjectCollection oReturnCollection = oSearcher.Get();
+
+                foreach (ManagementObject oReturn in oReturnCollection)
+                {
+                    users.Add(oReturn["UserName"].ToString().ToLower());
+                }
             }
+            catch { }
 
             return users.ToArray();
+        }
+
+        public static string GetHostName()
+        {
+            return System.Environment.MachineName;
         }
     }
 }

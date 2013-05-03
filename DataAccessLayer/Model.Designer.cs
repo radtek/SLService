@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 
-namespace DataLayer
+namespace DataAccessLayer
 {
     #region Contexts
     
@@ -270,6 +270,54 @@ namespace DataLayer
         private Nullable<global::System.DateTime> _Date;
         partial void OnDateChanging(Nullable<global::System.DateTime> value);
         partial void OnDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String HostName
+        {
+            get
+            {
+                return _HostName;
+            }
+            set
+            {
+                OnHostNameChanging(value);
+                ReportPropertyChanging("HostName");
+                _HostName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("HostName");
+                OnHostNameChanged();
+            }
+        }
+        private global::System.String _HostName;
+        partial void OnHostNameChanging(global::System.String value);
+        partial void OnHostNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> UserSession
+        {
+            get
+            {
+                return _UserSession;
+            }
+            set
+            {
+                OnUserSessionChanging(value);
+                ReportPropertyChanging("UserSession");
+                _UserSession = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserSession");
+                OnUserSessionChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _UserSession;
+        partial void OnUserSessionChanging(Nullable<global::System.Decimal> value);
+        partial void OnUserSessionChanged();
 
         #endregion
     
@@ -397,6 +445,54 @@ namespace DataLayer
         private Nullable<global::System.DateTime> _Date;
         partial void OnDateChanging(Nullable<global::System.DateTime> value);
         partial void OnDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String HostName
+        {
+            get
+            {
+                return _HostName;
+            }
+            set
+            {
+                OnHostNameChanging(value);
+                ReportPropertyChanging("HostName");
+                _HostName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("HostName");
+                OnHostNameChanged();
+            }
+        }
+        private global::System.String _HostName;
+        partial void OnHostNameChanging(global::System.String value);
+        partial void OnHostNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> UserSession
+        {
+            get
+            {
+                return _UserSession;
+            }
+            set
+            {
+                OnUserSessionChanging(value);
+                ReportPropertyChanging("UserSession");
+                _UserSession = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserSession");
+                OnUserSessionChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _UserSession;
+        partial void OnUserSessionChanging(Nullable<global::System.Decimal> value);
+        partial void OnUserSessionChanged();
 
         #endregion
     
@@ -524,6 +620,54 @@ namespace DataLayer
         private Nullable<global::System.DateTime> _Date;
         partial void OnDateChanging(Nullable<global::System.DateTime> value);
         partial void OnDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String HostName
+        {
+            get
+            {
+                return _HostName;
+            }
+            set
+            {
+                OnHostNameChanging(value);
+                ReportPropertyChanging("HostName");
+                _HostName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("HostName");
+                OnHostNameChanged();
+            }
+        }
+        private global::System.String _HostName;
+        partial void OnHostNameChanging(global::System.String value);
+        partial void OnHostNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> UserSession
+        {
+            get
+            {
+                return _UserSession;
+            }
+            set
+            {
+                OnUserSessionChanging(value);
+                ReportPropertyChanging("UserSession");
+                _UserSession = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserSession");
+                OnUserSessionChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _UserSession;
+        partial void OnUserSessionChanging(Nullable<global::System.Decimal> value);
+        partial void OnUserSessionChanged();
 
         #endregion
     

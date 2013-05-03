@@ -54,9 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
       <Project>{B316A10F-8349-4C37-8085-79AB32A3FD76}</Project>
-      <Name>DataLayer</Name>
+      <Name>DataAccessLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\StoplichtService\StoplichtService.csproj">
       <Project>{68CEA0EA-2868-45C4-9599-03E2D441A49D}</Project>
@@ -64,7 +64,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

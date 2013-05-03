@@ -10,17 +10,21 @@
           <EntitySet Name="View_EventLogByDate" EntityType="SLServiceModel.Store.View_EventLogByDate" store:Type="Views" store:Schema="dbo" store:Name="View_EventLogByDate">
             <DefiningQuery>SELECT 
       [View_EventLogByDate].[id] AS [id], 
-      [View_EventLogByDate].[Message] AS [Message], 
+      [View_EventLogByDate].[Date] AS [Date], 
+      [View_EventLogByDate].[HostName] AS [HostName], 
+      [View_EventLogByDate].[UserSession] AS [UserSession], 
       [View_EventLogByDate].[UserName] AS [UserName], 
-      [View_EventLogByDate].[Date] AS [Date]
+      [View_EventLogByDate].[Message] AS [Message]
       FROM [dbo].[View_EventLogByDate] AS [View_EventLogByDate]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="View_EventLogByUser" EntityType="SLServiceModel.Store.View_EventLogByUser" store:Type="Views" store:Schema="dbo" store:Name="View_EventLogByUser">
             <DefiningQuery>SELECT 
       [View_EventLogByUser].[id] AS [id], 
-      [View_EventLogByUser].[Message] AS [Message], 
+      [View_EventLogByUser].[Date] AS [Date], 
+      [View_EventLogByUser].[HostName] AS [HostName], 
+      [View_EventLogByUser].[UserSession] AS [UserSession], 
       [View_EventLogByUser].[UserName] AS [UserName], 
-      [View_EventLogByUser].[Date] AS [Date]
+      [View_EventLogByUser].[Message] AS [Message]
       FROM [dbo].[View_EventLogByUser] AS [View_EventLogByUser]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
@@ -29,9 +33,11 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Message" Type="nvarchar" MaxLength="250" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="Date" Type="datetime" />
+          <Property Name="HostName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserSession" Type="numeric" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Message" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'SLService.dbo.View_EventLogByDate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -41,9 +47,11 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Message" Type="nvarchar" MaxLength="250" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="Date" Type="datetime" />
+          <Property Name="HostName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserSession" Type="numeric" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Message" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'SLService.dbo.View_EventLogByUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -53,9 +61,11 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Message" Type="nvarchar" MaxLength="250" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="Date" Type="datetime" />
+          <Property Name="HostName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserSession" Type="numeric" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Message" Type="nvarchar" MaxLength="250" />
         </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -74,6 +84,8 @@
           <Property Name="Message" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
           <Property Name="UserName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Date" Type="DateTime" />
+          <Property Type="String" Name="HostName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="UserSession" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="View_EventLogByDate">
           <Key>
@@ -83,6 +95,8 @@
           <Property Type="String" Name="Message" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="Date" />
+          <Property Type="String" Name="HostName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="UserSession" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="View_EventLogByUser">
           <Key>
@@ -92,6 +106,8 @@
           <Property Type="String" Name="Message" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="Date" />
+          <Property Type="String" Name="HostName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="UserSession" Precision="18" Scale="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -102,7 +118,9 @@
     <EntitySetMapping Name="EventLog">
       <EntityTypeMapping TypeName="IsTypeOf(SLServiceModel.EventLog)">
         <MappingFragment StoreEntitySet="EventLog">
-          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="UserSession" ColumnName="UserSession" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+                <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="Message" ColumnName="Message" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Date" ColumnName="Date" />
@@ -112,7 +130,9 @@
     <EntitySetMapping Name="View_EventLogByDate">
       <EntityTypeMapping TypeName="IsTypeOf(SLServiceModel.View_EventLogByDate)">
         <MappingFragment StoreEntitySet="View_EventLogByDate">
-          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="UserSession" ColumnName="UserSession" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+                <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="Message" ColumnName="Message" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Date" ColumnName="Date" />
@@ -122,6 +142,8 @@
           <EntitySetMapping Name="View_EventLogByUser">
             <EntityTypeMapping TypeName="SLServiceModel.View_EventLogByUser">
               <MappingFragment StoreEntitySet="View_EventLogByUser">
+                <ScalarProperty Name="UserSession" ColumnName="UserSession" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
@@ -151,7 +173,7 @@
       <Diagram Name="Model">
         <EntityTypeShape EntityType="SLServiceModel.EventLog" Width="1.875" PointX="0.75" PointY="0.75" Height="1.787985026041667" IsExpanded="true" />
         <EntityTypeShape EntityType="SLServiceModel.View_EventLogByDate" Width="2" PointX="3" PointY="0.75" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="SLServiceModel.View_EventLogByUser" Width="1.875" PointX="0.75" PointY="2.875" Height="1.787985026041667" />
+        <EntityTypeShape EntityType="SLServiceModel.View_EventLogByUser" Width="1.875" PointX="0.75" PointY="3.125" Height="1.787985026041667" />
       </Diagram>
     </Diagrams>
   </Designer>

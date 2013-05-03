@@ -22,14 +22,5 @@ namespace StoplichtTest.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("EDWIN-PC\\SQLEXPRESS")]
-        public string SQLServerInstance {
-            get {
-                return ((string)(this["SQLServerInstance"]));
-            }
-        }
     }
 }
