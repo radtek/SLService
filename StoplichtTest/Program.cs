@@ -21,11 +21,8 @@ namespace StoplichtTest
                     case "run":
                         Run();
                         break;
-                    case "createconnectionstring":
+                    case "testconnection":
                         CreateEntityConnectionString();
-                        break;
-                    case "testconnectionstring":
-                        TestConnection(args[1]);
                         break;
                     default:
                         argCheck = false;
@@ -39,13 +36,14 @@ namespace StoplichtTest
 
             if (!argCheck)
             {
-                Console.WriteLine("StoplichtTest [run|createconnectionstring|testconnectionstring]");
+                Console.WriteLine("StoplichtTest [run|testconnection]");
                 return;
             }
         }
 
         static void ShowEvent(SystemStateChange change) 
         {
+
             Console.WriteLine(change.Description);
         }
 
@@ -65,17 +63,6 @@ namespace StoplichtTest
             {
                 ServiceBase.Run(service);
             }
-        }
-
-        static void TestConnection(string connectionstring)
-        {
-            try 
-            {
-                SqlConnection conn = new SqlConnection(connectionstring);
-                conn.Open(); Console.WriteLine("Conn Open");
-                conn.Close(); Console.WriteLine("Conn Closed");
-            }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
 
         static void CreateEntityConnectionString()
@@ -115,7 +102,16 @@ namespace StoplichtTest
             new EntityConnection(entityBuilder.ToString()))
             {
                 conn.Open();
-                Console.WriteLine("Connection is now open. Press any key to close.");
+
+                DataLayer.EventLog log = new DataLayer.EventLog();
+                log.Date = DateTime.Now;
+                log.Message = "Testing connection";
+                log.UserName = string.Join(";", StoplichtService.SystemInfo.CurrentActiveUsers());
+                DataLayer.SLServiceEntities sl = new DataLayer.SLServiceEntities(conn);
+                sl.AddToEventLog(log);
+                sl.SaveChanges();
+
+                Console.WriteLine("Added 'Testing connection' to EventLog. Press any key to close.");
                 Console.Read();
                 conn.Close();
             }
