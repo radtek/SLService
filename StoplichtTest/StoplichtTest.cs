@@ -9,7 +9,7 @@ using System.Data.EntityClient;
 
 namespace StoplichtTest
 {
-    class Program
+    class StoplichtTest
     {
         static void Main(string[] args)
         {
@@ -18,11 +18,11 @@ namespace StoplichtTest
             {
                 switch (args[0])
                 {
-                    case "run":
-                        Run();
+                    case "connection":
+                        TestConnection();
                         break;
-                    case "testconnection":
-                        CreateEntityConnectionString();
+                    case "service":
+                        RunService();
                         break;
                     default:
                         argCheck = false;
@@ -36,21 +36,20 @@ namespace StoplichtTest
 
             if (!argCheck)
             {
-                Console.WriteLine("StoplichtTest [run|testconnection]");
+                Console.WriteLine("StoplichtTest [connection|service]");
                 return;
             }
         }
 
-        static void ShowEvent(SystemStateChange change) 
+        static void LogEvent(SystemStateChange change) 
         {
-
             Console.WriteLine(change.Description);
         }
 
-        static void Run()
+        static void RunService()
         {
             SLService service = new SLService();
-            service.AddSessionChangeEventHandler(ShowEvent);
+            service.AddSessionChangeEventHandler(LogEvent);
 
             if (Environment.UserInteractive)
             {
@@ -65,7 +64,7 @@ namespace StoplichtTest
             }
         }
 
-        static void CreateEntityConnectionString()
+        static void TestConnection()
         {
             // Specify the provider name, server and database.
             string providerName = "System.Data.SqlClient";
