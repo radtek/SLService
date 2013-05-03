@@ -80,6 +80,38 @@ namespace DataLayer
             }
         }
         private ObjectSet<EventLog> _EventLog;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<View_EventLogByDate> View_EventLogByDate
+        {
+            get
+            {
+                if ((_View_EventLogByDate == null))
+                {
+                    _View_EventLogByDate = base.CreateObjectSet<View_EventLogByDate>("View_EventLogByDate");
+                }
+                return _View_EventLogByDate;
+            }
+        }
+        private ObjectSet<View_EventLogByDate> _View_EventLogByDate;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<View_EventLogByUser> View_EventLogByUser
+        {
+            get
+            {
+                if ((_View_EventLogByUser == null))
+                {
+                    _View_EventLogByUser = base.CreateObjectSet<View_EventLogByUser>("View_EventLogByUser");
+                }
+                return _View_EventLogByUser;
+            }
+        }
+        private ObjectSet<View_EventLogByUser> _View_EventLogByUser;
 
         #endregion
         #region AddTo Methods
@@ -90,6 +122,22 @@ namespace DataLayer
         public void AddToEventLog(EventLog eventLog)
         {
             base.AddObject("EventLog", eventLog);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the View_EventLogByDate EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToView_EventLogByDate(View_EventLogByDate view_EventLogByDate)
+        {
+            base.AddObject("View_EventLogByDate", view_EventLogByDate);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the View_EventLogByUser EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToView_EventLogByUser(View_EventLogByUser view_EventLogByUser)
+        {
+            base.AddObject("View_EventLogByUser", view_EventLogByUser);
         }
 
         #endregion
@@ -119,6 +167,260 @@ namespace DataLayer
             EventLog eventLog = new EventLog();
             eventLog.id = id;
             return eventLog;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Decimal _id;
+        partial void OnidChanging(global::System.Decimal value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Message
+        {
+            get
+            {
+                return _Message;
+            }
+            set
+            {
+                OnMessageChanging(value);
+                ReportPropertyChanging("Message");
+                _Message = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Message");
+                OnMessageChanged();
+            }
+        }
+        private global::System.String _Message;
+        partial void OnMessageChanging(global::System.String value);
+        partial void OnMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String UserName
+        {
+            get
+            {
+                return _UserName;
+            }
+            set
+            {
+                OnUserNameChanging(value);
+                ReportPropertyChanging("UserName");
+                _UserName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("UserName");
+                OnUserNameChanged();
+            }
+        }
+        private global::System.String _UserName;
+        partial void OnUserNameChanging(global::System.String value);
+        partial void OnUserNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                OnDateChanging(value);
+                ReportPropertyChanging("Date");
+                _Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Date");
+                OnDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _Date;
+        partial void OnDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnDateChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SLServiceModel", Name="View_EventLogByDate")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class View_EventLogByDate : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new View_EventLogByDate object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        public static View_EventLogByDate CreateView_EventLogByDate(global::System.Decimal id)
+        {
+            View_EventLogByDate view_EventLogByDate = new View_EventLogByDate();
+            view_EventLogByDate.id = id;
+            return view_EventLogByDate;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Decimal _id;
+        partial void OnidChanging(global::System.Decimal value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Message
+        {
+            get
+            {
+                return _Message;
+            }
+            set
+            {
+                OnMessageChanging(value);
+                ReportPropertyChanging("Message");
+                _Message = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Message");
+                OnMessageChanged();
+            }
+        }
+        private global::System.String _Message;
+        partial void OnMessageChanging(global::System.String value);
+        partial void OnMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String UserName
+        {
+            get
+            {
+                return _UserName;
+            }
+            set
+            {
+                OnUserNameChanging(value);
+                ReportPropertyChanging("UserName");
+                _UserName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("UserName");
+                OnUserNameChanged();
+            }
+        }
+        private global::System.String _UserName;
+        partial void OnUserNameChanging(global::System.String value);
+        partial void OnUserNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                OnDateChanging(value);
+                ReportPropertyChanging("Date");
+                _Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Date");
+                OnDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _Date;
+        partial void OnDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnDateChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SLServiceModel", Name="View_EventLogByUser")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class View_EventLogByUser : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new View_EventLogByUser object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        public static View_EventLogByUser CreateView_EventLogByUser(global::System.Decimal id)
+        {
+            View_EventLogByUser view_EventLogByUser = new View_EventLogByUser();
+            view_EventLogByUser.id = id;
+            return view_EventLogByUser;
         }
 
         #endregion
