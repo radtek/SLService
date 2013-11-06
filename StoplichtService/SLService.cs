@@ -25,7 +25,7 @@ namespace StoplichtService
 
         public void Start()
         {
-            /* todo !! */
+            /* todo ?? */
         }
 
         protected override void OnStop()
@@ -43,7 +43,11 @@ namespace StoplichtService
 
             switch (changeDescription.Reason)
             {
-                case SessionChangeReason.SessionLogon:        
+                case SessionChangeReason.SessionLogon:
+                    // Write the string to a file.
+                    //System.IO.StreamWriter file1 = System.IO.File.AppendText("c:\\Temp\\test.txt");
+                    //file1.WriteLine("unlock");
+                    //file1.Close();
                     log.Message = "logon";
                     break;
                 case SessionChangeReason.SessionLogoff:
@@ -53,11 +57,11 @@ namespace StoplichtService
                     log.Message = "lock";
                     break;
                 case SessionChangeReason.SessionUnlock:
-                    // Write the string to a file.
-                    //System.IO.StreamWriter file1 = System.IO.File.AppendText("c:\\Temp\\test.txt");
-                    //file1.WriteLine("unlock");
-                    //file1.Close();
                     log.Message = "unlock";                    
+                    break;
+                default:
+                    var msg = changeDescription.Reason;
+                    log.Message = Enum.GetName(msg.GetType(), msg);
                     break;
             }
 
